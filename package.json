@@ -1,0 +1,68 @@
+{
+  "name": "servie-cookie-store",
+  "version": "0.0.0",
+  "description": "Cookie storage and manipulation for Servie",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "lint": "tslint \"src/**/*.ts\"",
+    "build": "rimraf dist && tsc",
+    "specs": "jest --coverage",
+    "test": "npm run -s lint && npm run -s build && npm run -s specs",
+    "prepublish": "typings install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/node-servie-cookie-store.git"
+  },
+  "keywords": [
+    "servie",
+    "cookie",
+    "http",
+    "session",
+    "store"
+  ],
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/blakeembrey/node-servie-cookie-store/issues"
+  },
+  "homepage": "https://github.com/blakeembrey/node-servie-cookie-store",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      ".(ts|tsx)": "ts-jest/preprocessor.js"
+    },
+    "testRegex": "src/.*\\.(?:test|spec)\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "devDependencies": {
+    "@types/keygrip": "^1.0.0",
+    "jest": "^19.0.0",
+    "keygrip": "^1.0.1",
+    "rimraf": "^2.5.4",
+    "servie": "^0.2.0",
+    "ts-jest": "^19.0.0",
+    "tslint": "^4.3.1",
+    "tslint-config-standard": "^4.0.0",
+    "typescript": "^2.2.1",
+    "typings": "^2.1.0"
+  },
+  "peerDependencies": {
+    "servie": "^0.2.0"
+  },
+  "dependencies": {
+    "cookie": "^0.3.1"
+  }
+}
