@@ -16,11 +16,7 @@
     "strictNullChecks": true,
     "removeComments": false,
     "sourceMap": true,
-    "inlineSources": true,
-    "baseUrl": ".",
-    "paths": {
-      "cookie": ["types/cookie.d.ts"]
-    }
+    "inlineSources": true
   },
   "include": [
     "src/**/*",
