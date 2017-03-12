@@ -1,6 +1,6 @@
 {
   "name": "servie-cookie-store",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Cookie storage and manipulation for Servie",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
