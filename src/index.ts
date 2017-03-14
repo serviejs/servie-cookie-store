@@ -16,7 +16,7 @@ export class Cookie {
 
   cache: { [key: string]: string } | undefined
 
-  constructor (public req: Request, public res: Response, public keys?: Keys) {}
+  constructor (public req: Request, public keys?: Keys) {}
 
   get (key: string) {
     if (!this.cache) {
@@ -53,7 +53,7 @@ export class Cookie {
 
   encode (value: any) {
     const val = JSON.stringify(value)
-    const data = new Buffer(val).toString('base64')
+    const data = new Buffer(val, 'utf8').toString('base64')
 
     if (!this.keys) {
       return data
@@ -64,8 +64,12 @@ export class Cookie {
     return `${data}.${digest}`
   }
 
-  set (key: string, value: any, options?: CookieSerializeOptions) {
-    this.res.headers.append('Set-Cookie', serialize(key, this.encode(value), options))
+  stringify (key: string, value: any, options?: CookieSerializeOptions) {
+    return serialize(key, this.encode(value), options)
+  }
+
+  set (res: Response, key: string, value: any, options?: CookieSerializeOptions) {
+    res.headers.append('Set-Cookie', this.stringify(key, value, options))
   }
 
 }
