@@ -45,7 +45,7 @@ export class Cookie {
     const digest = value.substr(index + 1)
 
     if (this.keys.verify(data, digest)) {
-      return parseValue(value)
+      return parseValue(data)
     }
 
     return
