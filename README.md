@@ -1,9 +1,9 @@
 # Servie Cookie Store
 
-[![NPM version][npm-image]][npm-url]
-[![NPM downloads][downloads-image]][downloads-url]
-[![Build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
+[![NPM version](https://img.shields.io/npm/v/servie-cookie-store.svg?style=flat)](https://npmjs.org/package/servie-cookie-store)
+[![NPM downloads](https://img.shields.io/npm/dm/servie-cookie-store.svg?style=flat)](https://npmjs.org/package/servie-cookie-store)
+[![Build status](https://img.shields.io/travis/serviejs/servie-cookie-store.svg?style=flat)](https://travis-ci.org/serviejs/servie-cookie-store)
+[![Test coverage](https://img.shields.io/coveralls/serviejs/servie-cookie-store.svg?style=flat)](https://coveralls.io/r/serviejs/servie-cookie-store?branch=master)
 
 > Cookie storage and manipulation for Servie.
 
@@ -49,13 +49,4 @@ This project is written using [TypeScript](https://github.com/Microsoft/TypeScri
 
 ## License
 
-MIT
-
-[npm-image]: https://img.shields.io/npm/v/servie-cookie-store.svg?style=flat
-[npm-url]: https://npmjs.org/package/servie-cookie-store
-[downloads-image]: https://img.shields.io/npm/dm/servie-cookie-store.svg?style=flat
-[downloads-url]: https://npmjs.org/package/servie-cookie-store
-[travis-image]: https://img.shields.io/travis/blakeembrey/node-servie-cookie-store.svg?style=flat
-[travis-url]: https://travis-ci.org/blakeembrey/node-servie-cookie-store
-[coveralls-image]: https://img.shields.io/coveralls/blakeembrey/node-servie-cookie-store.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/blakeembrey/node-servie-cookie-store?branch=master
+Apache 2.0

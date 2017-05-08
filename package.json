@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/blakeembrey/node-servie-cookie-store.git"
+    "url": "git://github.com/serviejs/servie-cookie-store.git"
   },
   "keywords": [
     "servie",
@@ -32,9 +32,9 @@
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/blakeembrey/node-servie-cookie-store/issues"
+    "url": "https://github.com/serviejs/servie-cookie-store/issues"
   },
-  "homepage": "https://github.com/blakeembrey/node-servie-cookie-store",
+  "homepage": "https://github.com/serviejs/servie-cookie-store",
   "jest": {
     "testEnvironment": "node",
     "transform": {
