@@ -53,7 +53,7 @@ export class Cookie {
 
   encode (value: any) {
     const val = JSON.stringify(value)
-    const data = new Buffer(val, 'utf8').toString('base64')
+    const data = new Buffer(val, 'utf8').toString('base64').replace(/=+$/, '')
 
     if (!this.keys) {
       return data

@@ -3,8 +3,8 @@
 exports[`servie cookie store should sign cookies 1`] = `
 Object {
   "set-cookie": Array [
-    "a=eyJ0ZXN0Ijp0cnVlfQ%3D%3D._6w9E-9zKPwThSnsjUD9fJY5RHs",
-    "b=ImFiYyI%3D.sxQLgTnZKd6G9fXWj161wzF6yEA",
+    "a=eyJ0ZXN0Ijp0cnVlfQ.bLV-DyDZU2MJtawpR5hTp-Nskbs",
+    "b=ImFiYyI.fXPvT2wfAEu90_PeF3YxYc6Nr48",
   ],
 }
 `;
@@ -12,8 +12,8 @@ Object {
 exports[`servie cookie store should work with regular cookies 1`] = `
 Object {
   "set-cookie": Array [
-    "a=eyJ0ZXN0Ijp0cnVlfQ%3D%3D",
-    "b=ImFiYyI%3D",
+    "a=eyJ0ZXN0Ijp0cnVlfQ",
+    "b=ImFiYyI",
   ],
 }
 `;
