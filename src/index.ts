@@ -46,8 +46,7 @@ export class Cookie {
   }
 
   encode (value: any) {
-    const val = JSON.stringify(value)
-    const data = new Buffer(val, 'utf8').toString('base64').replace(/=+$/, '')
+    const data = encodeValue(value)
 
     if (!this.keys) return data
 
@@ -73,4 +72,11 @@ function parseValue (value: string): any | undefined {
   try {
     return JSON.parse(Buffer.from(value, 'base64').toString('utf8'))
   } catch (e) { /* Ignore. */ }
+}
+
+/**
+ * Encode data as base64 JSON.
+ */
+function encodeValue (value: any): string {
+  return Buffer.from(JSON.stringify(value), 'utf8').toString('base64').replace(/=+$/, '')
 }
