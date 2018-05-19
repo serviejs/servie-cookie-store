@@ -31,22 +31,16 @@ export class Cookie {
   }
 
   decode (value: string) {
-    if (!this.keys) {
-      return parseValue(value)
-    }
+    if (!this.keys) return parseValue(value)
 
     const index = value.indexOf('.')
 
-    if (index === -1) {
-      return
-    }
+    if (index === -1) return
 
     const data = value.substr(0, index)
     const digest = value.substr(index + 1)
 
-    if (this.keys.verify(data, digest)) {
-      return parseValue(data)
-    }
+    if (this.keys.verify(data, digest)) return parseValue(data)
 
     return
   }
@@ -55,9 +49,7 @@ export class Cookie {
     const val = JSON.stringify(value)
     const data = new Buffer(val, 'utf8').toString('base64').replace(/=+$/, '')
 
-    if (!this.keys) {
-      return data
-    }
+    if (!this.keys) return data
 
     const digest = this.keys.sign(data)
 
@@ -79,6 +71,6 @@ export class Cookie {
  */
 function parseValue (value: string): any | undefined {
   try {
-    return JSON.parse(new Buffer(value, 'base64').toString('utf8'))
+    return JSON.parse(Buffer.from(value, 'base64').toString('utf8'))
   } catch (e) { /* Ignore. */ }
 }

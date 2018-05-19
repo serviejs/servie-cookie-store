@@ -28,10 +28,10 @@ const keys = new Keygrip(['SEKRIT2', 'SEKRIT1'])
 
 function handler (req) {
   const cookie = new Cookie(req, keys)
-  const session = cookie.get('session') || {}
+  const session = cookie.get('session')
   const res = new Response()
 
-  cookie.set(res, 'session', Object.assign(session, { demo: true }))
+  cookie.set(res, 'session', Object.assign({}, session, { demo: true }))
 }
 ```
 
