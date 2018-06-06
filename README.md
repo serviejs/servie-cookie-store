@@ -38,8 +38,9 @@ function handler (req) {
 ### Methods
 
 * `get(key)` retrieves the cookie by `key` name, returning `undefined` when not found or invalid
-* `stringify(key, data, options?)` creates a `Set-Cookie` header with optional [cookie options](https://github.com/jshttp/cookie#options-1)
 * `set(res, key, data, options?)` sets the cookie with optional [cookie options](https://github.com/jshttp/cookie#options-1)
+* `delete(res, key, options?)` deletes the cookie by setting `maxAge` into past with optional [cookie options](https://github.com/jshttp/cookie#options-1)
+* `stringify(key, data, options?)` creates a `Set-Cookie` header with optional [cookie options](https://github.com/jshttp/cookie#options-1)
 * `encode(value)` stringifies a JavaScript value
 * `decode(value)` parses the cookie value into JavaScript
 
