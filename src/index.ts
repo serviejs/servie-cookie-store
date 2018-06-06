@@ -10,6 +10,11 @@ export interface Keys {
 }
 
 /**
+ * Cookie serialization subtract expiration parameters.
+ */
+export type DeleteCookieOptions = Pick<CookieSerializeOptions, Exclude<keyof CookieSerializeOptions, 'maxAge' | 'expires'>>
+
+/**
  * The cookie class reads and writes cookies.
  */
 export class Cookie {
@@ -61,6 +66,11 @@ export class Cookie {
 
   set (res: Response, key: string, value: any, options?: CookieSerializeOptions) {
     res.headers.append('Set-Cookie', this.stringify(key, value, options))
+  }
+
+  delete (res: Response, key: string, options?: DeleteCookieOptions) {
+    const deleteOptions = Object.assign({}, options, { maxAge: -1, expires: undefined })
+    res.headers.append('Set-Cookie', serialize(key, '', deleteOptions))
   }
 
 }
