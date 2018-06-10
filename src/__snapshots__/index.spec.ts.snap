@@ -1,10 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`servie cookie store should "delete" a cookie 1`] = `
+Object {
+  "set-cookie": "test=; Max-Age=-1",
+}
+`;
+
+exports[`servie cookie store should encode and decode "" 1`] = `"IiI"`;
+
+exports[`servie cookie store should encode and decode "test" 1`] = `"InRlc3Qi"`;
+
+exports[`servie cookie store should encode and decode {"foo":true} 1`] = `"eyJmb28iOnRydWV9"`;
+
+exports[`servie cookie store should encode and decode 0 1`] = `"MA"`;
+
+exports[`servie cookie store should encode and decode null 1`] = `"bnVsbA"`;
+
+exports[`servie cookie store should encode and decode undefined 1`] = `""`;
+
 exports[`servie cookie store should sign cookies 1`] = `
 Object {
   "set-cookie": Array [
-    "a=eyJ0ZXN0Ijp0cnVlfQ.bLV-DyDZU2MJtawpR5hTp-Nskbs",
-    "b=ImFiYyI.fXPvT2wfAEu90_PeF3YxYc6Nr48",
+    "a=AOKkO9iAlv_IRFnIstl-oetmpfTOyC2V061IaBc0jHt3eyJ0ZXN0Ijp0cnVlfQ",
+    "b=AFrC_EOuK_QMoTy3aPmPlK5Vd27Jdd7EoNJTWWVEhx9BImFiYyI",
   ],
 }
 `;

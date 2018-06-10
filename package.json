@@ -49,10 +49,9 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
-    "@types/keygrip": "^1.0.0",
     "@types/node": "^10.1.2",
     "jest": "^22.4.4",
-    "keygrip": "^1.0.1",
+    "keysign": "^1.0.1",
     "rimraf": "^2.5.4",
     "servie": "^3.0.0",
     "ts-jest": "^22.4.6",
