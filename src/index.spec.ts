@@ -14,6 +14,7 @@ describe('servie cookie store', () => {
 
     expect(cookie.get('a')).toEqual(1)
     expect(cookie.get('b')).toEqual(2)
+    expect(cookie.get('c')).toEqual(undefined)
 
     cookie.set(res, 'a', { test: true })
     cookie.set(res, 'b', 'abc')
