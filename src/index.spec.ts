@@ -1,5 +1,6 @@
 import { Keysign } from 'keysign'
 import { Request, Response, createHeaders } from 'servie'
+import { btoa } from 'universal-base64'
 import { Cookie } from './index'
 
 describe('servie cookie store', () => {
@@ -51,6 +52,24 @@ describe('servie cookie store', () => {
 
     expect(cookie.get('a')).toBe(undefined)
     expect(cookie.get('b')).toBe(undefined)
+  })
+
+  it('should ignore tampered cookies', () => {
+    const req = new Request({ url: '/' })
+    const cookie = new Cookie(req, keys)
+
+    req.headers.set('Cookie', `a=${cookie.encode('test').slice(0, 36)}`)
+
+    expect(cookie.get('a')).toBe(undefined)
+  })
+
+  it('should return undefined when parsing fails', () => {
+    const req = new Request({ url: '/' })
+    const cookie = new Cookie(req)
+
+    req.headers.set('Cookie', `a=${btoa('aaaa')}`)
+
+    expect(cookie.get('a')).toBe(undefined)
   })
 
   ;[undefined, null, '', 0, 'test', { foo: true }].forEach(value => {

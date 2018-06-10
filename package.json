@@ -58,7 +58,8 @@
     "tslint": "^5.10.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.3",
-    "typings": "^2.1.0"
+    "typings": "^2.1.0",
+    "universal-base64": "^1.0.0"
   },
   "peerDependencies": {
     "servie": "*"

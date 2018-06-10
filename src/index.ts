@@ -86,7 +86,9 @@ function decode (s: string) {
  * Parse data from cookie.
  */
 function parseData (b: Buffer) {
-  return b.length ? JSON.parse(b.toString('utf8')) : undefined
+  if (!b.length) return
+
+  try { return JSON.parse(b.toString('utf8')) } catch (e) { /* Ignore. */ }
 }
 
 /**
