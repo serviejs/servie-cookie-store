@@ -1,5 +1,12 @@
 import { Request, Response } from "servie";
 import { parse, serialize, CookieSerializeOptions } from "cookie";
+import { encode, decode } from "universal-base64url";
+import { URLSearchParams } from "url";
+
+/**
+ * Cache private key.
+ */
+export const kCache = Symbol("cache");
 
 /**
  * The `keys` interface is used for signing and verifying cookies.
@@ -21,14 +28,21 @@ export type DeleteCookieOptions = Pick<
  * The cookie class reads and writes cookies.
  */
 export class Cookie {
-  cache: { [key: string]: string } | undefined;
+  [kCache]: URLSearchParams | undefined;
 
   constructor(public req: Request, public keys?: Keys) {}
 
-  get(key: string) {
-    const cache = this.cache || getCookies(this.req);
+  get cookies() {
+    return this[kCache] || (this[kCache] = getCookies(this.req));
+  }
 
-    if (cache[key]) return this.decode(cache[key]);
+  get(name: string) {
+    const value = this.cookies.get(name);
+    if (value) return this.decode(value);
+  }
+
+  getAll(name: string) {
+    return this.cookies.getAll(name).map(x => this.decode(x));
   }
 
   set(
@@ -54,66 +68,44 @@ export class Cookie {
 
   encode(value: any) {
     if (value === undefined) return "";
-    if (!this.keys) return encode(stringifyData(value));
+    if (!this.keys) return encode(JSON.stringify(value));
 
-    return encode(this.keys.encode(stringifyData(value)));
+    return encode(
+      this.keys.encode(Buffer.from(JSON.stringify(value))).toString("binary")
+    );
   }
 
   decode(value: string) {
     if (value === "") return undefined;
     if (!this.keys) return parseData(decode(value));
 
-    const data = this.keys.decode(decode(value));
-    return data ? parseData(data) : undefined;
+    const data = this.keys.decode(Buffer.from(decode(value), "binary"));
+    return data ? parseData(data.toString("binary")) : undefined;
   }
-}
-
-/**
- * Safe URL base64 encoding.
- */
-const MAP_URL_BASE64 = new Map([["/", "_"], ["+", "-"], ["=", ""]]);
-
-/**
- * Encode buffer to string for cookie serialization.
- */
-function encode(b: Buffer) {
-  return b.toString("base64").replace(/[/+=]/g, x => MAP_URL_BASE64.get(x)!);
-}
-
-/**
- * Decode cookie string to buffer.
- */
-function decode(s: string) {
-  return Buffer.from(s, "base64");
 }
 
 /**
  * Parse data from cookie.
  */
-function parseData(b: Buffer) {
-  if (!b.length) return;
+function parseData(value: string) {
+  if (!value.length) return;
 
   try {
-    return JSON.parse(b.toString("utf8"));
+    return JSON.parse(value);
   } catch (e) {
     /* Ignore. */
   }
 }
 
 /**
- * Stringify data for cookie.
- */
-function stringifyData(d: any) {
-  return Buffer.from(JSON.stringify(d), "utf8");
-}
-
-/**
  * Transform request into cookies.
  */
 function getCookies(req: Request) {
-  const cookies: { [key: string]: string } = Object.create(null);
+  const cookies = new URLSearchParams();
   for (const c of req.headers.getAll("cookie")) {
-    Object.assign(cookies, parse(c));
+    for (const [key, value] of Object.entries(parse(c))) {
+      cookies.append(key, value);
+    }
   }
   return cookies;
 }

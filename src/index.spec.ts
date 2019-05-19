@@ -1,6 +1,6 @@
 import { Keysign } from "keysign";
 import { Request, Response } from "servie";
-import { encode } from "universal-base64";
+import { encode } from "universal-base64url";
 import { Cookie } from "./index";
 
 describe("servie cookie store", () => {
