@@ -1,5 +1,5 @@
 import { Keysign } from "keysign";
-import { Request, Response } from "servie";
+import { Request, Response } from "servie/dist/node";
 import { encode } from "universal-base64url";
 import { Cookie } from "./index";
 

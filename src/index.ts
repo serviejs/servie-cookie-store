@@ -1,4 +1,4 @@
-import { Request, Response } from "servie";
+import { CommonRequest, CommonResponse } from "servie/dist/common";
 import { parse, serialize, CookieSerializeOptions } from "cookie";
 import { encode, decode } from "universal-base64url";
 import { URLSearchParams } from "url";
@@ -30,7 +30,7 @@ export type DeleteCookieOptions = Pick<
 export class Cookie {
   [kCache]: URLSearchParams | undefined;
 
-  constructor(public req: Request, public keys?: Keys) {}
+  constructor(public req: CommonRequest, public keys?: Keys) {}
 
   get cookies() {
     return this[kCache] || (this[kCache] = getCookies(this.req));
@@ -46,7 +46,7 @@ export class Cookie {
   }
 
   set(
-    res: Response,
+    res: CommonResponse,
     key: string,
     value: any,
     options?: CookieSerializeOptions
@@ -54,7 +54,7 @@ export class Cookie {
     res.headers.append("Set-Cookie", this.stringify(key, value, options));
   }
 
-  delete(res: Response, key: string, options?: DeleteCookieOptions) {
+  delete(res: CommonResponse, key: string, options?: DeleteCookieOptions) {
     const deleteOptions = Object.assign({}, options, {
       maxAge: -1,
       expires: undefined
@@ -100,7 +100,7 @@ function parseData(value: string) {
 /**
  * Transform request into cookies.
  */
-function getCookies(req: Request) {
+function getCookies(req: CommonRequest) {
   const cookies = new URLSearchParams();
   for (const c of req.headers.getAll("cookie")) {
     for (const [key, value] of Object.entries(parse(c))) {
